@@ -9,30 +9,28 @@ package net.aomlab.samples.mybatisguice.basic.dto;
  */
 public class User {
 
-    public int userId;
-    public String name;
+    public int codigo;
+    public String nombre;
 
     public User() {
     }
 
-    public User(int userId, String name) {
-        this.userId = userId;
-        this.name = name;
+    public int getCodigo() {
+        return codigo;
     }
 
-    public int getUserId() {
-        return userId;
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
-    public String getName() {
-        return name;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    
+
 }

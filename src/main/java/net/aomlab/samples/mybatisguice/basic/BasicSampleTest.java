@@ -30,6 +30,12 @@ public class BasicSampleTest {
 
     private UserService fooService;
 
+    public static void main(String a[]) throws Exception{
+        BasicSampleTest st=new BasicSampleTest();
+        st.init();
+        st.test();
+    }
+    
     @Before
     public void init() throws Exception {
 
@@ -54,11 +60,11 @@ public class BasicSampleTest {
     public static Properties createTestProperties() {
         Properties myBatisProperties = new Properties();
         myBatisProperties.setProperty("mybatis.environment.id", "test");
-        myBatisProperties.setProperty("JDBC.host", "localhost");
+        myBatisProperties.setProperty("JDBC.host", "desarrollo.is.escuelaing.edu.co");
         myBatisProperties.setProperty("JDBC.port", "3306");
-        myBatisProperties.setProperty("JDBC.schema", "test");
-        myBatisProperties.setProperty("JDBC.username", "root");
-        myBatisProperties.setProperty("JDBC.password", "");
+        myBatisProperties.setProperty("JDBC.schema", "bdprueba");
+        myBatisProperties.setProperty("JDBC.username", "bdprueba");
+        myBatisProperties.setProperty("JDBC.password", "bdprueba");
         myBatisProperties.setProperty("JDBC.autoCommit", "false");
         return myBatisProperties;
     }
@@ -66,9 +72,9 @@ public class BasicSampleTest {
     @Test
     public void test() {
         UserService fooService = injector.getInstance(UserService.class);
-        User user = fooService.doSomeBusinessStuff("1");
-        System.out.println(user.getUserId());
-        System.out.println(user.getName());
+        User user = fooService.doSomeBusinessStuff("2057000");
+        System.out.println(user.getCodigo());
+        System.out.println(user.getNombre());
 
     }
 }
