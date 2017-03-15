@@ -1,10 +1,10 @@
-package net.aomlab.samples.mybatisguice.basic;
+package edu.eci.pdsw.sampleprj.basic;
 
 import com.google.inject.Injector;
-import net.aomlab.samples.mybatisguice.basic.dto.User;
-import net.aomlab.samples.mybatisguice.basic.mapper.UserMapper;
-import net.aomlab.samples.mybatisguice.basic.service.UserService;
-import net.aomlab.samples.mybatisguice.basic.service.UserServiceImpl;
+import edu.eci.pdsw.sampleprj.basic.dto.User;
+import edu.eci.pdsw.sampleprj.basic.mapper.UserMapper;
+import edu.eci.pdsw.sampleprj.basic.service.UserService;
+import edu.eci.pdsw.sampleprj.basic.service.UserServiceImpl;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,6 +16,9 @@ import java.util.Properties;
 
 import static com.google.inject.Guice.createInjector;
 import static com.google.inject.name.Names.bindProperties;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.mybatis.guice.XMLMyBatisModule;
 
 /**
  * Created with IntelliJ IDEA.
@@ -32,33 +35,56 @@ public class BasicSampleTest {
 
     public static void main(String a[]) throws Exception{
         BasicSampleTest st=new BasicSampleTest();
+        try{
         st.init();
+        
         st.test();
+        
+        }
+        catch(NullPointerException e){
+            e.printStackTrace();
+        }
     }
     
     @Before
     public void init() throws Exception {
 
         this.injector = createInjector(
-                new MyBatisModule() {
+                
+                
+                new XMLMyBatisModule() {
+
+                    @Override
+                    protected void initialize() {
+                        install(JdbcHelper.MySQL);                        
+                        setClassPathResource("mybatis-config.xml");
+                        bind(UserService.class).to(UserServiceImpl.class);
+                    }
+
+                }
+                
+                /*new MyBatisModule() {
                     @Override
                     protected void initialize() {
                         install(JdbcHelper.MySQL);
                         bindDataSourceProviderType(PooledDataSourceProvider.class);
                         bindTransactionFactoryType(JdbcTransactionFactory.class);
+
                         
                         addMapperClass(UserMapper.class);
 
                         bindProperties(binder(), createTestProperties());
-                        bind(UserService.class).to(UserServiceImpl.class);
+                        //bind(UserService.class).to(UserServiceImpl.class);
                     }
 
-                }
+                }*/
         );
         this.fooService = this.injector.getInstance(UserService.class);
     }
 
     public static Properties createTestProperties() {
+        
+        
         Properties myBatisProperties = new Properties();
         myBatisProperties.setProperty("mybatis.environment.id", "test");
         myBatisProperties.setProperty("JDBC.host", "desarrollo.is.escuelaing.edu.co");
@@ -72,10 +98,15 @@ public class BasicSampleTest {
 
     @Test
     public void test() {
+        
+        
         UserService fooService = injector.getInstance(UserService.class);
-        User user = fooService.doSomeBusinessStuff("2057000");
-        System.out.println(user.getCodigo());
-        System.out.println(user.getNombre());
-
+        System.out.println(fooService);
+        
+        //User user = fooService.doSomeBusinessStuff("2057000");
+        fooService.addUser(new User(1223234,"aaaddda","xx55sasd22","asdasdas","asdasdas"));
+        //System.out.println(user.getCodigo());
+       //System.out.println(user.getNombre());
+        
     }
 }

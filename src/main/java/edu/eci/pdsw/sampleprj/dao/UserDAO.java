@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package net.aomlab.samples.mybatisguice.dao;
+package edu.eci.pdsw.sampleprj.dao;
 
-import net.aomlab.samples.mybatisguice.basic.dto.User;
+import edu.eci.pdsw.sampleprj.basic.dto.User;
 
 /**
  *
@@ -14,5 +14,7 @@ import net.aomlab.samples.mybatisguice.basic.dto.User;
 public interface UserDAO {
     
     public User getUser(String id);
+    
+    public void save(User u);
     
 }

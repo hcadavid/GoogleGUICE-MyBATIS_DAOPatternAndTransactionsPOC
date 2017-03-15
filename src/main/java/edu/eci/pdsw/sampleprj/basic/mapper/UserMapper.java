@@ -1,6 +1,7 @@
-package net.aomlab.samples.mybatisguice.basic.mapper;
+package edu.eci.pdsw.sampleprj.basic.mapper;
 
-import net.aomlab.samples.mybatisguice.basic.dto.User;
+import edu.eci.pdsw.sampleprj.basic.dto.User;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -16,4 +17,10 @@ public interface UserMapper {
     @Select("SELECT * FROM usuario WHERE codigo = #{userId}")
     User getUser(@Param("userId") String userId);
 
+    //@Insert("INSERT INTO usuario values(#{codigo},#{nombre},#{nick},#{pwd},#{rol})")
+    public void saveUser(User u);    
+
+    
+    
+    
 }

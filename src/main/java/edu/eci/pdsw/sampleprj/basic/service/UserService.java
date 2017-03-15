@@ -1,6 +1,6 @@
-package net.aomlab.samples.mybatisguice.basic.service;
+package edu.eci.pdsw.sampleprj.basic.service;
 
-import net.aomlab.samples.mybatisguice.basic.dto.User;
+import edu.eci.pdsw.sampleprj.basic.dto.User;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,7 +10,9 @@ import net.aomlab.samples.mybatisguice.basic.dto.User;
  * To change this template use File | Settings | File Templates.
  */
 public interface UserService {
-
+    
     User doSomeBusinessStuff(String userId);
 
+    public void addUser(User u);
+    
 }

@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package net.aomlab.samples.mybatisguice.dao.mysql;
+package edu.eci.pdsw.sampleprj.dao.mybatis;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import net.aomlab.samples.mybatisguice.basic.dto.User;
-import net.aomlab.samples.mybatisguice.basic.mapper.UserMapper;
-import net.aomlab.samples.mybatisguice.dao.UserDAO;
+import edu.eci.pdsw.sampleprj.basic.dto.User;
+import edu.eci.pdsw.sampleprj.basic.mapper.UserMapper;
+import edu.eci.pdsw.sampleprj.dao.UserDAO;
 
 /**
  *
@@ -23,6 +23,11 @@ public class MyBATISUserDAO implements UserDAO{
     
     public User getUser(String id) {
         return this.userMapper.getUser(id);
+    }
+
+    public void save(User u) {
+        System.out.println(">>>>>"+userMapper);
+        userMapper.saveUser(u);
     }
     
 }

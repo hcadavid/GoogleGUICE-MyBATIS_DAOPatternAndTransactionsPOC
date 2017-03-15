@@ -1,10 +1,10 @@
-package net.aomlab.samples.mybatisguice.basic.service;
+package edu.eci.pdsw.sampleprj.basic.service;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import net.aomlab.samples.mybatisguice.basic.dto.User;
-import net.aomlab.samples.mybatisguice.basic.mapper.UserMapper;
-import net.aomlab.samples.mybatisguice.dao.mysql.MyBATISUserDAO;
+import edu.eci.pdsw.sampleprj.basic.dto.User;
+import edu.eci.pdsw.sampleprj.basic.mapper.UserMapper;
+import edu.eci.pdsw.sampleprj.dao.mybatis.MyBATISUserDAO;
 import org.mybatis.guice.transactional.Transactional;
 
 /**
@@ -20,9 +20,19 @@ public class UserServiceImpl implements UserService {
     @Inject
     private MyBATISUserDAO daoUser;
 
+    
     @Transactional
     public User doSomeBusinessStuff(String userId) {
             return daoUser.getUser(userId);
     }
 
+    @Transactional
+    @Override
+    public void addUser(User u) {
+            System.out.println("DAO>>>>"+daoUser);        
+            daoUser.save(u);
+    }
+    
+    
+    
 }
