@@ -46,6 +46,7 @@ public class BasicSampleTest {
                         install(JdbcHelper.MySQL);
                         bindDataSourceProviderType(PooledDataSourceProvider.class);
                         bindTransactionFactoryType(JdbcTransactionFactory.class);
+                        
                         addMapperClass(UserMapper.class);
 
                         bindProperties(binder(), createTestProperties());

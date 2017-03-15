@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import net.aomlab.samples.mybatisguice.basic.dto.User;
 import net.aomlab.samples.mybatisguice.basic.mapper.UserMapper;
+import net.aomlab.samples.mybatisguice.dao.mysql.MyBATISUserDAO;
 import org.mybatis.guice.transactional.Transactional;
 
 /**
@@ -17,11 +18,11 @@ import org.mybatis.guice.transactional.Transactional;
 public class UserServiceImpl implements UserService {
 
     @Inject
-    private UserMapper userMapper;
+    private MyBATISUserDAO daoUser;
 
     @Transactional
     public User doSomeBusinessStuff(String userId) {
-            return this.userMapper.getUser(userId);
+            return daoUser.getUser(userId);
     }
 
 }
