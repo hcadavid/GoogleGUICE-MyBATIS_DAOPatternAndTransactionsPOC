@@ -15,7 +15,7 @@ import org.mybatis.guice.transactional.Transactional;
  * To change this template use File | Settings | File Templates.
  */
 @Singleton
-public class UserServiceImpl implements UserService {
+public class UserServiceDAOImpl implements UserService {
 
     @Inject
     private MyBATISUserDAO daoUser;
